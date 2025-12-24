@@ -1,0 +1,35 @@
+{
+  "name": "gewhatsapp",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "masgi <giantoidn@gmail.com>",
+  "license": "MIT",
+  "description": "A privacy-focused WhatsApp desktop client using Electron.",
+  "homepage": "https://masgi.com/gewhatsapp",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.gewhatsapp.privacy.desktop",
+    "productName": "GeWhatsapp",
+    "executableName": "gewhatsapp",
+    "directories": { "output": "dist" },
+    "linux": {
+      "target": ["deb"],
+      "category": "Network",
+      "icon": "build/icons"
+    },
+    "deb": {
+      "maintainer": "masgi <giantoidn@gmail.com>",
+      "synopsis": "WhatsApp Desktop with Privacy Layer",
+      "description": "Unofficial WhatsApp Web wrapper with privacy blur, hover reveal, and PIN lock."
+    },
+    "files": ["**/*", "!dist"]
+  }
+}

@@ -1,0 +1,27 @@
+# node / electron
+node_modules/
+dist/
+out/
+build/*-unpacked/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# electron-builder artifacts
+*.rpm
+*.deb
+*.AppImage
+*.snap
+*.dmg
+*.exe
+*.msi
+
+# env / secret
+.env
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
