@@ -1,4 +1,5 @@
 const { BrowserWindow } = require('electron');
+const { app, shell } = require('electron');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
@@ -55,6 +56,21 @@ function createMainWindow(privacyState, onVisibilityChange, options = {}) {
 
   // Load WhatsApp Web
   mainWindow.loadURL('https://web.whatsapp.com', { userAgent: desktopUA });
+
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    // Buka semua URL baru di browser default
+    shell.openExternal(details.url);
+    return { action: 'deny' };
+  });
+
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    // Jika bukan URL utama WhatsApp Web → buka di browser dan batalkan navigasi
+    const isWhatsApp = url.startsWith('https://web.whatsapp.com');
+    if (!isWhatsApp) {
+      event.preventDefault();
+      shell.openExternal(url);
+    }
+  });
 
   // Ketika user klik X:
   mainWindow.on('close', (event) => {
